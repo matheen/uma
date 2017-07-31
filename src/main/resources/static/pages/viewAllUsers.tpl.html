@@ -1,0 +1,47 @@
+<div ng-controller="ViewAllUsersCtrl as viewAllUsersCtrl">
+	<div class="data-loading" ng-show="dataLoading">
+ 		<i class="fa fa-refresh fa-spin fa-5x "></i>	
+ 	</div>
+
+	<div class="row" ng-hide="dataLoading">				
+		<div class="col-md-12">
+			<label>Search: <input class="form-control" ng-model="searchText"></label>
+		</div>
+	</div>
+	
+	<div class="row" ng-hide="dataLoading">				
+		<div class="col-md-12">
+		
+	 	<table class="table table-striped">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Date Of Birth</th>
+				<th>Photo</th>
+				<th></th>
+				<th></th>
+			</tr>		
+			
+			<tr dir-paginate="user in users | filter:searchFilter | itemsPerPage: 5">
+			    <td>{{ user.firstName }}</td>
+			    <td>{{ user.lastName }}</td>
+				<td>{{ user.dateOfBirth | formatDate }}</td>
+				<td>
+					<a href="{{ user.userImage.url }}">
+						<img src="{{ user.userImage.url }}" alt="{{ user.firstName }}" 
+							 style="height:50px; width:50px">
+					</a>
+				</td>
+				<td>
+					<a href="#/view-user/{{ user.id }}" data-toggle="tooltip" data-placement="top" title="View User Details"><i class="fa fa-search-plus fa-2x icon-color"></i></a>				
+				</td>
+				<td>					
+					<i id="user.id" ng-click="viewAllUsersCtrl.delete(user.id)" class="fa fa-times fa-2x icon-color clickable-icon" ng-hide="userDelete && user.id === selectedUser" data-toggle="tooltip" data-placement="top" title="Delete User"></i>
+					<i class="fa fa-refresh fa-spin fa-2x icon-color" ng-show="userDelete && user.id === selectedUser"></i>
+				</td>
+			</tr>
+		</table>
+		<dir-pagination-controls></dir-pagination-controls>
+	</div>
+	</div>	
+</div>

@@ -1,0 +1,84 @@
+<div ng-controller="ViewUserCtrl as viewUser">
+	<div class="data-loading" ng-show="dataLoading">
+ 		<i class="fa fa-refresh fa-spin fa-5x "></i>	
+ 	</div>
+
+	<div class="panel panel-primary" ng-hide="dataLoading">
+	    <div class="panel-heading">
+	        <h3 class="panel-title">View User</h3>
+	    </div>
+	    <div class="panel-body">
+	        <form class="form-horizontal" role="form" name="personForm">
+	            
+	            <div class="row">					
+					  <div class="col-md-6">
+					
+						<div class="form-group">                
+			                <label for="firstName" class="col-sm-3 control-label">First name</label>		                
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	{{ user.firstName }}    
+			                </div>
+			            </div>	  
+					  	
+					  	<div class="form-group">
+			                <label for="lastName" class="col-sm-3 control-label">Last name</label>
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	{{ user.lastName }}    
+			                </div>
+			            </div>
+						
+						<div class="form-group">
+			                <label for="dateOfBirth" class="col-sm-3 control-label">Date of Birth</label>
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	{{ user.dateOfBirth | formatDate }}    
+			                </div>
+			            </div>	  
+						
+						<div class="form-group">
+			                <label for="image" class="col-sm-3 control-label">Photo</label>
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	<a href="{{ user.userImage.url }}" class="thumbnail">
+							      <img src="{{ user.userImage.url }}" alt="{{ user.firstName }}">
+							    </a>  
+			                </div>		                
+			            </div>	  
+					  
+					  </div>
+					  
+					  <div class="col-md-6">
+	
+						<div class="form-group">
+			                <label for="street" class="col-sm-3 control-label">Street</label>		
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	{{ user.address.street }}    
+			                </div>
+			            </div>
+			            
+			            <div class="form-group">
+			                <label for="town" class="col-sm-3 control-label">Town</label>
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	{{ user.address.town }}    
+			                </div>
+			            </div>
+			            
+			            <div class="form-group">
+			                <label for="county" class="col-sm-3 control-label">County</label>
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	{{ user.address.county }}    
+			                </div>
+			            </div>
+			            
+			            <div class="form-group">
+			                <label for="postcode" class="col-sm-3 control-label">Postcode</label>
+			                <div class="col-sm-9" style="padding-top: 7px">
+			                	{{ user.address.postcode }}    
+			                </div>
+			            </div>
+			            				  
+					  </div>
+					</div>      
+	        </form>
+	        
+	    </div>
+	</div>
+</div>

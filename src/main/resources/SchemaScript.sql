@@ -1,0 +1,32 @@
+DROP SCHEMA IF EXISTS uma;
+CREATE SCHEMA IF NOT EXISTS uma DEFAULT CHARACTER SET utf8;
+USE uma;
+
+CREATE TABLE IF NOT EXISTS uma.user_address (
+  id INT NOT NULL AUTO_INCREMENT,  
+  street VARCHAR(40) NOT NULL,
+  town VARCHAR(40) NOT NULL,
+  county VARCHAR(40) NOT NULL,
+  postcode VARCHAR(8) NOT NULL,
+  PRIMARY KEY (id));
+  
+CREATE TABLE IF NOT EXISTS uma.user_image (
+  id INT NOT NULL AUTO_INCREMENT,
+  s3_key VARCHAR(200) NOT NULL,
+  url VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (id));  
+  
+CREATE TABLE IF NOT EXISTS uma.uma_user (
+  id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(30) NOT NULL,
+  last_name VARCHAR(30) NOT NULL,
+  date_of_birth DATE NOT NULL,
+  user_image_id INT NOT NULL,
+  address_id INT NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_ADDRESS_ID
+    FOREIGN KEY (address_id)
+    REFERENCES uma.user_address (id),
+  CONSTRAINT FK_USER_IMAGE_ID
+    FOREIGN KEY (user_image_id)
+    REFERENCES uma.user_image (id));    
